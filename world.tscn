@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqjebxt4efsx6"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_3m3a8"]
+[ext_resource type="Texture2D" uid="uid://t6ro0ts2k7cj" path="res://icon.svg" id="1_x7esj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u6auv"]
+radius = 64.0
+height = 128.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l66cc"]
+radius = 16.0
+height = 32.0
+
+[node name="World" type="Node2D"]
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0.576471, 1, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(65, 65)
+script = ExtResource("1_3m3a8")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("1_x7esj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CapsuleShape2D_u6auv")
+
+[node name="Box" type="RigidBody2D" parent="."]
+position = Vector2(200, 100)
+gravity_scale = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Box"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_x7esj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Box"]
+shape = SubResource("CapsuleShape2D_l66cc")
